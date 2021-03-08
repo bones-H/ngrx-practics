@@ -1,1 +1,6 @@
-<p>{{title}}</p>
+<button (click)="increase()">+1</button>
+<button (click)="decrease()">-1</button>
+<button (click)="clear()">=0</button>
+
+<p>Счетчик: {{counter}}</p>
+<p>Обновлялось: {{updatedAt | date: "HH:mm:ss dd/MM/yyyy"}}</p>
