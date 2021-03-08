@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {clear, countSelector, decrease, increase} from './reducers/counter';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +9,11 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   updatedAt?: number;
-
+  count$ = this.store.select(countSelector);
   private counterValue = 0;
+
+  constructor(public store: Store) {
+  }
 
   public get counter(): number {
     return this.counterValue;
@@ -20,15 +25,15 @@ export class AppComponent {
   }
 
   increase() {
-    this.counter = this.counterValue + 1;
+    this.store.dispatch(increase());
   }
 
   decrease() {
-    this.counter = this.counterValue - 1;
+    this.store.dispatch(decrease());
   }
 
   clear() {
-    this.counter = 0;
+    this.store.dispatch(clear());
   }
 }
 
